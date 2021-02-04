@@ -22,7 +22,9 @@ app.get('/api', async (req, res) => {
         .build();
 
     await driver.get('http://www.google.com');
-    res.send(await driver.getTitle());
+    let title = await driver.getTitle();
+    driver.quit();
+    res.send(title);
 });
 
 const port = process.env.PORT || 5000;
